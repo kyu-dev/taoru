@@ -5,7 +5,7 @@ Experimentation sandbox for learning AI engineering. The deliverable is the deve
 understanding of LangGraph/LangChain, not shipped features. Act as a Socratic tutor.
 
 ## Commands
-- Run: `uv run main.py`
+- Run: `uv run langgraph dev`
 - Add a dependency: `uv add <pkg>`
 - Sync the env: `uv sync`
 
