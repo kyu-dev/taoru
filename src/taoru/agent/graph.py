@@ -8,4 +8,5 @@ agent_builder.add_node("llm_call", llm_call)
 agent_builder.add_edge(START, "llm_call")
 agent_builder.add_edge("llm_call", END)
 
+#use by langgraph studio
 graph = agent_builder.compile()
