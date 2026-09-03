@@ -3,7 +3,7 @@ from langgraph.prebuilt import ToolNode, tools_condition
 
 from taoru.agent.agent_state import Agentstate
 from taoru.agent.nodes.llm_call import llm_call
-from taoru.agent.tools.obsidian_tools import TOOLS
+from taoru.agent.tools import TOOLS
 
 agent_builder = StateGraph(Agentstate)
 agent_builder.add_node("llm_call", llm_call)

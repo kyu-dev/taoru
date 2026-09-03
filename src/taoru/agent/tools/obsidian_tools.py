@@ -4,25 +4,9 @@ from taoru.infrastructure.obsidian import (
     create_note,
     edit_note,
     resolve_in_vault,
-    search_lines,
     trash_note,
 )
 
-@tool
-def search_obsidian_note(keywords: list[str], limit: int = 20) -> str:
-    """Search the full text of the user's Obsidian notes for any of the given keywords.
-
-    Matching is case-insensitive and covers note bodies, not just titles. Returns one
-    match per line as `path:line_number:text`, so the matching text is usually enough
-    to answer directly; call read_obsidian_note only when the surrounding context is
-    needed. Results are capped per note and are not ranked by relevance, so narrow the
-    keywords and search again if they look off.
-
-    Args:
-        keywords: Words to look for. A line matches if it contains at least one of them.
-        limit: Maximum number of matching lines to return, across all notes.
-    """
-    return "\n".join(search_lines(keywords, limit)) or "No note found."
 
 @tool
 def read_obsidian_note(path: str) -> str:
@@ -93,7 +77,6 @@ def delete_obsidian_note(path: str) -> str:
     return f"Moved {path} to {trashed}." if trashed else f"No change: {path} not found."
 
 TOOLS = [
-    search_obsidian_note,
     read_obsidian_note,
     edit_obsidian_note,
     create_obsidian_note,

@@ -4,7 +4,7 @@ from langchain.messages import SystemMessage
 from taoru.agent.agent_state import Agentstate
 from taoru.agent.prompt import SYSTEM_PROMPT
 from taoru.config import settings
-from taoru.agent.tools.obsidian_tools import TOOLS
+from taoru.agent.tools import TOOLS
 
 model = init_chat_model(
     "mistralai:mistral-small-latest",

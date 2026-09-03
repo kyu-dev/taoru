@@ -5,6 +5,26 @@ from taoru.config import settings
 
 VAULT = settings.obsidian_vault.resolve()
 
+def iter_notes(vault=VAULT):
+    """Read every note of the vault as (vault-relative path, content) pairs.
+
+    The path is the one the other tools speak, so a caller can hand it straight to
+    resolve_in_vault or read the note again later. A note that disappears mid-walk is
+    skipped instead of fatal: the vault sits on iCloud, where a file can be evicted
+    between the listing and the read.
+    """
+    notes = []
+
+    for relative in glob.glob("**/*.md", root_dir=vault, recursive=True):
+        try:
+            with open(Path(vault) / relative, encoding="utf-8", errors="ignore") as f:
+                notes.append((relative, f.read()))
+        except FileNotFoundError:
+            continue
+
+    return notes
+
+
 def resolve_in_vault(path, vault=VAULT):
     """Turn a model-supplied note path into an absolute path inside the vault.
 
