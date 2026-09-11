@@ -4,7 +4,7 @@ from taoru.infrastructure.obsidian import (
     create_note,
     edit_note,
     resolve_in_vault,
-    trash_note,
+    delete_note,
 )
 
 
@@ -73,7 +73,7 @@ def delete_obsidian_note(path: str) -> str:
     Args:
         path: Vault-relative path to the note, as returned by search_obsidian_note.
     """
-    trashed = trash_note(path)
+    trashed = delete_note(path)
     return f"Moved {path} to {trashed}." if trashed else f"No change: {path} not found."
 
 TOOLS = [

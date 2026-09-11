@@ -24,7 +24,6 @@ def iter_notes(vault=VAULT):
 
     return notes
 
-
 def resolve_in_vault(path, vault=VAULT):
     """Turn a model-supplied note path into an absolute path inside the vault.
 
@@ -92,7 +91,7 @@ def edit_note(path, old_string, new_string, replace_all=False, vault=VAULT):
     )
     return found
 
-def trash_note(path, vault=VAULT):
+def delete_note(path, vault=VAULT):
     """Move a note to the vault's .trash folder instead of deleting it.
 
     Returns the vault-relative path it now sits at, or None if the note did not
