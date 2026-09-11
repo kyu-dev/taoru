@@ -3,12 +3,11 @@ from langchain.messages import SystemMessage
 
 from taoru.agent.agent_state import Agentstate
 from taoru.agent.prompt import SYSTEM_PROMPT
-from taoru.config import settings
 from taoru.agent.tools import TOOLS
 
 model = init_chat_model(
-    "mistralai:mistral-small-latest",
-    api_key=settings.mistral_api_key.get_secret_value(),
+    model="qwen3.8:27b-mlx",
+    model_provider="ollama",
 ).bind_tools(TOOLS)
 
 

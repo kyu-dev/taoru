@@ -1,10 +1,9 @@
 from langchain_core.vectorstores import InMemoryVectorStore
-from langchain_mistralai import MistralAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
-from taoru.config import settings
 from taoru.rag.ingest import chunk_vault
 
-embeddings = MistralAIEmbeddings(model="mistral-embed", api_key=settings.mistral_api_key)
+embeddings = OllamaEmbeddings(model="qwen3-embedding")
 vector_store = InMemoryVectorStore(embedding=embeddings)
 
 
@@ -22,5 +21,5 @@ def sync_vault():
 indexed_chunks = sync_vault()
 
 if __name__ == "__main__":
-    assert len(indexed_chunks) > 0, "expected at least one chunk to be indexed"
+    assert len(indexed_chunks) > 0,  "expected at least one chunk to be indexed"
     print(f"Indexed {len(indexed_chunks)} chunks.")
