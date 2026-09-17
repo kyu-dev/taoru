@@ -3,11 +3,11 @@ from langgraph.prebuilt import ToolNode, tools_condition
 
 from taoru.agent.agent_state import Agentstate
 from taoru.agent.nodes.llm_call import llm_call
-from taoru.agent.tools import TOOLS
+from taoru.agent.tools import TOOLS, confirm_dangerous_tools
 
 agent_builder = StateGraph(Agentstate)
 agent_builder.add_node("llm_call", llm_call)
-agent_builder.add_node("tools", ToolNode(TOOLS))
+agent_builder.add_node("tools", ToolNode(TOOLS, wrap_tool_call=confirm_dangerous_tools))
 agent_builder.add_edge(START, "llm_call")
 agent_builder.add_conditional_edges("llm_call", tools_condition, ["tools", END])
 agent_builder.add_edge("tools", "llm_call")
